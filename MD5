@@ -1,13 +1,13 @@
-bd35bc0a84282b915b5a6ac5901aba38 *DESCRIPTION
-8adb4bdd1ba08598aaecc42af5107b4c *NAMESPACE
+f800fa34f647fc85ed2e125205e494c7 *DESCRIPTION
+49c6680d1349e84e7340d84e5259997e *NAMESPACE
 eeb175d5c717acc24421b031a45746f4 *R/cacheManagement.R
 8751a7884136deee940ddfdfc25240fa *R/cgi.R
-71563263dc7e1ccc67e6d7d0f202f7d7 *R/httpResponse.R
+2857b1dbdaa0b8e9be72ddfe74fefbc0 *R/httpResponse.R
 f3b883af5e45afa196692421532a393b *R/pylogger.R
 5d8014504156c11dcf0e9f3c00f73d29 *README.md
 1669a3a9db9bfe9523e36478449e6062 *man/cgiRequest.Rd
-26477c6a7fd6a83be9c9b51651ebd27b *man/httpResponse.contentType.Rd
-d62a5d8db506a43bc36ecab31916955f *man/httpResponse.header.Rd
+a677d95e802bd1eabbaadc85ab85bde3 *man/httpResponse.contentType.Rd
+cec3b550ddce2728b18b2eac2c9ad6bc *man/httpResponse.header.Rd
 9862fe6101a8acb9bfdb978d4bc2b15b *man/logLevels.Rd
 fc6c47db39752ccd7ee219d278719c98 *man/logger.debug.Rd
 e11b2a583d298670563ffa2421d59839 *man/logger.error.Rd
@@ -18,3 +18,4 @@ e11b2a583d298670563ffa2421d59839 *man/logger.error.Rd
 48081d6b6160336b46012ffc5a3ce11e *man/logger.trace.Rd
 47ffc4b983c29fc0536991d7f0f87787 *man/logger.warn.Rd
 80d396b38b783d59059fa56608472a67 *man/manageCache.Rd
+5d50612ab3ac353fcc5a0570dd9973fe *man/mimeType.Rd

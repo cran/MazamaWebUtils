@@ -1,6 +1,6 @@
 Type: Package
 Package: MazamaWebUtils
-Version: 0.1.4
+Version: 0.1.5
 Title: Utility Functions for Building Web Databrowsers
 Authors@R: c(
     person("Jonathan", "Callahan", email="jonathan.s.callahan@gmail.com", role=c("aut","cre"))
@@ -17,5 +17,5 @@ Repository: CRAN
 LazyData: true
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2017-11-02 01:21:16 UTC; jonathan
-Date/Publication: 2017-11-02 15:02:07 UTC
+Packaged: 2017-12-06 17:59:49 UTC; jonathan
+Date/Publication: 2017-12-06 18:04:38 UTC

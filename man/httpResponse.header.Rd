@@ -7,14 +7,14 @@
 httpResponse.header(type = "text")
 }
 \arguments{
-\item{type}{file type used to generate the Content-Type string}
+\item{type}{file type or standard extension}
 }
 \value{
-A text string containing a valid HTTP Response header.
+A character string containing a valid HTTP Response header.
 }
 \description{
 This function will generate a header string containing only a minimal
-list of possible response header elements including:
+set of possible response header elements including:
 \itemize{
 \item{\code{Content-Type}}
 }

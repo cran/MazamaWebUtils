@@ -1,10 +1,10 @@
 #' @name httpResponse.header
 #' @export
 #' @title Create a HTTP Response Header
-#' @param type file type used to generate the Content-Type string
-#' @return A text string containing a valid HTTP Response header.
+#' @param type file type or standard extension
+#' @return A character string containing a valid HTTP Response header.
 #' @description This function will generate a header string containing only a minimal
-#' list of possible response header elements including:
+#' set of possible response header elements including:
 #' \itemize{
 #' \item{\code{Content-Type}}
 #' }
@@ -27,7 +27,7 @@ httpResponse.header <- function(type="text") {
 #' @name httpResponse.contentType
 #' @export
 #' @title Create a Content Type String
-#' @param type named type of file
+#' @param type file type or standard extension
 #' @return A character string with the appropriate MIME type.
 #' @description The \code{type} parameter is typically the file extension.
 #' @examples
@@ -37,35 +37,56 @@ httpResponse.header <- function(type="text") {
 
 httpResponse.contentType <- function(type="text") {
   
+  return(paste0("Content-Type: ",mimeType(type)))
+  
+}
+
+
+#' @name mimeType
+#' @export
+#' @title Create a MIME Type String
+#' @param type file type or standard extension
+#' @return A character string with the appropriate MIME type.
+#' @description The \code{type} parameter is typically the file extension.
+#' @references \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types}{MDN MIME types for the web}
+#' @references \href{http://www.iana.org/assignments/media-types/media-types.xhtml}{IANA all media types}
+#' @references \href{https://en.wikipedia.org/wiki/Media_type}{Wikipedia media types}
+#' @examples
+#' mimeType('text')
+#' mimeType('json')
+#' mimeType('png')
+
+mimeType <- function(type="text") {
+  
   # From https://en.wikipedia.org/wiki/Media_type
   
-  if ( type == "js" ) mimeType <- "application/javascript"
-  else if ( type == "json" ) mimeType <- "application/json"
-  # if ( type == "WHAT TYPE TO RECOGNIZE?" ) mimeType <- "application/x-www-form-urlencoded"
-  else if ( type == "xml" ) mimeType <- "application/xml"
-  else if ( type == "zip" ) mimeType <- "application/zip"
-  else if ( type == "pdf" ) mimeType <- "application/pdf"
-  else if ( type == "doc" ) mimeType <- "application/msword (.doc)"
-  else if ( type == "xls" ) mimeType <- "application/vnd.ms-excel (.xls)"
-  else if ( type == "xlsx" ) mimeType <- "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet (.xlsx)"
-  else if ( type == "sql" ) mimeType <- "application/sql"
-  else if ( type == "ppt" ) mimeType <- "application/vnd.ms-powerpoint (.ppt)"
-  else if ( type == "pptx" ) mimeType <- "application/vnd.openxmlformats-officedocument.presentationml.presentation (.pptx)"
-  else if ( type == "mpeg" ) mimeType <- "audio/mpeg"
-  else if ( type == "vorbis" ) mimeType <- "audio/vorbis"
-  #else if ( type == "WHAT TYPE TO RECOGNIZE?" ) mimeType <- "multipart/form-data"
-  else if ( type == "css" ) mimeType <- "text/css"
-  else if ( type == "html" ) mimeType <- "text/html"
-  else if ( type == "htm" ) mimeType <- "text/html"
-  else if ( type == "csv" ) mimeType <- "text/csv"
-  else if ( type == "txt" ) mimeType <- "text/plain"
-  else if ( type == "text" ) mimeType <- "text/plain"
-  else if ( type == "png" ) mimeType <- "image/png"
-  else if ( type == "jpeg" ) mimeType <- "image/jpeg"
-  else if ( type == "jpg" ) mimeType <- "image/jpeg"
-  else if ( type == "gif" ) mimeType <- "image/gif"
+  if ( type == "css" ) returnString <- "text/css"
+  else if ( type == "csv" ) returnString <- "text/csv"
+  else if ( type == "doc" ) returnString <- "application/msword (.doc)"
+  else if ( type == "gif" ) returnString <- "image/gif"
+  else if ( type == "htm" ) returnString <- "text/html"
+  else if ( type == "html" ) returnString <- "text/html"
+  else if ( type == "js" ) returnString <- "application/javascript"
+  else if ( type == "json" ) returnString <- "application/json"
+  else if ( type == "jpeg" ) returnString <- "image/jpeg"
+  else if ( type == "jpg" ) returnString <- "image/jpeg"
+  else if ( type == "mpeg" ) returnString <- "audio/mpeg"
+  else if ( type == "pdf" ) returnString <- "application/pdf"
+  else if ( type == "png" ) returnString <- "image/png"
+  else if ( type == "ppt" ) returnString <- "application/vnd.ms-powerpoint (.ppt)"
+  else if ( type == "pptx" ) returnString <- "application/vnd.openxmlformats-officedocument.presentationml.presentation (.pptx)"
+  else if ( type == "sql" ) returnString <- "application/sql"
+  else if ( type == "text" ) returnString <- "text/plain"
+  else if ( type == "txt" ) returnString <- "text/plain"
+  else if ( type == "vorbis" ) returnString <- "audio/vorbis"
+  else if ( type == "xls" ) returnString <- "application/vnd.ms-excel (.xls)"
+  else if ( type == "xlsx" ) returnString <- "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet (.xlsx)"
+  else if ( type == "xml" ) returnString <- "application/xml"
+  else if ( type == "zip" ) returnString <- "application/zip"
+  # if ( type == "WHAT TYPE TO RECOGNIZE?" ) returnString <- "application/x-www-form-urlencoded"
+  #else if ( type == "WHAT TYPE TO RECOGNIZE?" ) returnString <- "multipart/form-data"
   else stop(paste0("Unrecognized type: '",type,"'"))
   
-  return(paste0("Content-Type: ",mimeType))
+  return(returnString)
   
 }

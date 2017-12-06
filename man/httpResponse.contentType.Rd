@@ -7,7 +7,7 @@
 httpResponse.contentType(type = "text")
 }
 \arguments{
-\item{type}{named type of file}
+\item{type}{file type or standard extension}
 }
 \value{
 A character string with the appropriate MIME type.
