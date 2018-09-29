@@ -1,7 +1,6 @@
-<!-- [![Build Status](https://travis-ci.org/mazamascience/MazamaWebUtils.svg)](https://travis-ci.org/mazamascience/MazamaWebUtils) -->
-<!-- [![Coverage Status](https://coveralls.io/repos/mazamascience/MazamaWebUtils/badge.svg?branch=master&service=github)](https://coveralls.io/github/mazamascience/MazamaWebUtils?branch=master) -->
-<!-- [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/MazamaWebUtils)](https://cran.r-project.org/package=MazamaWebUtils) -->
-<!-- [![Downloads](http://cranlogs.r-pkg.org/badges/MazamaWebUtils)](https://cran.r-project.org/package=MazamaWebUtils) -->
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/MazamaWebUtils)](https://cran.r-project.org/package=MazamaWebUtils)
+[![Downloads](http://cranlogs.r-pkg.org/badges/MazamaWebUtils)](https://cran.r-project.org/package=MazamaWebUtils)
+[![Build Status](https://travis-ci.org/MazamaScience/MazamaWebUtils.svg?branch=master)](https://travis-ci.org/MazamaScience/MazamaWebUtils)
 
 # MazamaWebUtils
 
@@ -14,7 +13,7 @@ and parsing of http request headers.
 ## Background
 
 The MazamaWebUtils package was created by MazamaScience to regularize our
-work building web services on top of R scripts.
+work building R-based web services.
 
 The main goal of this package is to create an internally standardized set of
 functions that we can use in various web-data projects. Areas of functionality
@@ -28,13 +27,13 @@ supported by this package include:
  
 ## Installation
 
-Users will want to install the **devtools** package to have access to latest versions 
-of some packages that are not yet available on CRAN.
+Install from CRAN with:
 
-The following packages should be installed with devtools by typing the following at the RStudio console:
+```install.packages('MazamaWebUtils')```
+
+Install the latest version from GitHub with:
 
 ``` devtools::install_github('mazamascience/MazamaWebUtils') ```
-
 
 ----
 

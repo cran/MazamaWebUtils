@@ -5,9 +5,9 @@
 #' @param extensions vector of file extensions eligible for removal
 #' @param maxCacheSize maximum cache size in megabytes
 #' @return Invisibly returns the number of files removed.
-#' @description If \code{cacheDir} takes up more than \code{maxCacheSize} megabytes
-#' on disk, files wll be removed in order of oldest access time. Only files
-#' matching \code{extensions} are eligible for removal.
+#' @description If \code{cacheDir} takes up more than \code{maxCacheSize}
+#' megabytes on disk, files wll be removed in order of oldest access time. Only
+#' files matching \code{extensions} are eligible for removal.
 #' @examples 
 #' # Create a cache directory and fill it with 1.6 MB of data
 #' CACHE_DIR <- tempdir()
@@ -24,7 +24,9 @@
 #'   print(file.info(file)[,c(1,6)])
 #' }
 
-manageCache <- function(cacheDir, extensions=c('html','json','pdf','png'), maxCacheSize=100) {
+manageCache <- function(cacheDir,
+                        extensions=c('html','json','pdf','png'),
+                        maxCacheSize=100) {
   
   # Convert incoming size from megabytes to bytes
   maxCacheSize <- as.numeric(maxCacheSize) * 1e6
@@ -32,9 +34,11 @@ manageCache <- function(cacheDir, extensions=c('html','json','pdf','png'), maxCa
   # Get all files appropriate for deletion
   filesList <- list()
   for ( extension in extensions ) {
-    extension <- stringr::str_replace(extension,'^\\.','') # replace any initial '.'
+    extension <- stringr::str_replace(extension,'^\\.','') # replace initial '.'
     pattern <- paste0('\\.',extension,'$')
-    filesList[[extension]] <- list.files(cacheDir, pattern=pattern, full.names=TRUE)
+    filesList[[extension]] <- list.files(cacheDir,
+                                         pattern=pattern,
+                                         full.names=TRUE)
   }
   cacheFiles <- unlist(filesList, use.names=FALSE)
   

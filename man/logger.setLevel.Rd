@@ -22,12 +22,11 @@ commands at the command line.
 All functionality is built on top of the excellent \pkg{futile.logger} package.
 }
 \examples{
+\dontrun{
 # Set up console logging only
 logger.setup()
-logger.setLevel(INFO)
-logger.debug('debug message not shown')
-logger.info('info message is shown')
-logger.warn('warning messages and higher are shown')
+logger.setLevel(DEBUG)
+}
 }
 \seealso{
 \code{\link{logger.setup}}

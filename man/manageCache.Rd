@@ -18,9 +18,9 @@ manageCache(cacheDir, extensions = c("html", "json", "pdf", "png"),
 Invisibly returns the number of files removed.
 }
 \description{
-If \code{cacheDir} takes up more than \code{maxCacheSize} megabytes
-on disk, files wll be removed in order of oldest access time. Only files
-matching \code{extensions} are eligible for removal.
+If \code{cacheDir} takes up more than \code{maxCacheSize}
+megabytes on disk, files wll be removed in order of oldest access time. Only
+files matching \code{extensions} are eligible for removal.
 }
 \examples{
 # Create a cache directory and fill it with 1.6 MB of data

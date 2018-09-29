@@ -1,5 +1,8 @@
 #' @name logger.setup
 #' @export
+#' @importFrom futile.logger appender.console appender.file appender.tee
+#' @importFrom futile.logger flog.appender flog.logger flog.threshold
+#' @importFrom futile.logger flog.debug flog.error flog.fatal flog.info flog.trace flog.warn
 #' @title Set Up Python-Style Logging
 #' @param traceLog file name or full path where \code{logger.trace()} messages will be sent
 #' @param debugLog file name or full path where \code{logger.debug()} messages will be sent
@@ -47,57 +50,59 @@ logger.setup <- function(traceLog=NULL,
                          errorLog=NULL,
                          fatalLog=NULL) {
   
-  if ( ! 'futile.logger' %in% loadedNamespaces() ) requireNamespace('futile.logger', quietly=TRUE)
+  if ( ! 'futile.logger' %in% loadedNamespaces() ) {
+    requireNamespace('futile.logger', quietly=TRUE)
+  }
   
   # By default, the console receives only FATAL messages.
-  futile.logger::flog.threshold(futile.logger::FATAL)
+  flog.threshold(FATAL)
   
   # Set up TRACE logging
   if ( is.null(traceLog) ) {
-    invisible( futile.logger::flog.logger("trace", futile.logger::TRACE, appender.null()) )
+    invisible( flog.logger("trace", TRACE, appender.null()) )
   } else {
     if ( file.exists(traceLog) ) result <- file.remove(traceLog)
-    invisible( futile.logger::flog.logger("trace", futile.logger::TRACE, futile.logger::appender.file(traceLog)) )
+    invisible( flog.logger("trace", TRACE, appender.file(traceLog)) )
   }
   
   # Set up DEBUG logging
   if ( is.null(debugLog) ) {
-    invisible( futile.logger::flog.logger("debug", futile.logger::DEBUG, appender.null()) )
+    invisible( flog.logger("debug", DEBUG, appender.null()) )
   } else {
     if ( file.exists(debugLog) ) result <- file.remove(debugLog)
-    invisible( futile.logger::flog.logger("debug", futile.logger::DEBUG, futile.logger::appender.file(debugLog)) )
+    invisible( flog.logger("debug", DEBUG, appender.file(debugLog)) )
   }
   
   # Set up INFO logging
   if ( is.null(infoLog) ) {
-    invisible( futile.logger::flog.logger("info", futile.logger::INFO, appender.null()) )
+    invisible( flog.logger("info", INFO, appender.null()) )
   } else {
     if ( file.exists(infoLog) ) result <- file.remove(infoLog)
-    invisible( futile.logger::flog.logger("info", futile.logger::INFO, futile.logger::appender.file(infoLog)) )
+    invisible( flog.logger("info", INFO, appender.file(infoLog)) )
   }
   
   # Set up WARN logging
   if ( is.null(warnLog) ) {
-    invisible( futile.logger::flog.logger("warn", futile.logger::WARN, appender.null()) )
+    invisible( flog.logger("warn", WARN, appender.null()) )
   } else {
     if ( file.exists(warnLog) ) result <- file.remove(warnLog)
-    invisible( futile.logger::flog.logger("warn", futile.logger::WARN, futile.logger::appender.file(warnLog)) )
+    invisible( flog.logger("warn", WARN, appender.file(warnLog)) )
   }
   
   # Set up ERROR logging
   if ( is.null(errorLog) ) {
-    invisible( futile.logger::flog.logger("error", futile.logger::ERROR, appender.null()) )
+    invisible( flog.logger("error", ERROR, appender.null()) )
   } else {
     if ( file.exists(errorLog) ) result <- file.remove(errorLog)
-    invisible( futile.logger::flog.logger("error", futile.logger::ERROR, futile.logger::appender.file(errorLog)) )
+    invisible( flog.logger("error", ERROR, appender.file(errorLog)) )
   }
   
   # Set up FATAL logging
   if ( is.null(fatalLog) ) {
-    invisible( futile.logger::flog.appender(futile.logger::appender.console(), name='ROOT') )
+    invisible( flog.appender(appender.console(), name='ROOT') )
   } else {
     if ( file.exists(fatalLog) ) result <- file.remove(fatalLog)
-    invisible( futile.logger::flog.appender(futile.logger::appender.tee(fatalLog)) )
+    invisible( flog.appender(appender.tee(fatalLog)) )
   }
   
 }
@@ -114,14 +119,13 @@ logger.setup <- function(traceLog=NULL,
 #' @note All functionality is built on top of the excellent \pkg{futile.logger} package.
 #' @seealso \code{\link{logger.setup}}
 #' @examples
+#' \dontrun{
 #' # Set up console logging only
 #' logger.setup()
-#' logger.setLevel(INFO)
-#' logger.debug('debug message not shown')
-#' logger.info('info message is shown')
-#' logger.warn('warning messages and higher are shown')
+#' logger.setLevel(DEBUG)
+#' }
 logger.setLevel <- function(level) {
-  invisible( futile.logger::flog.threshold(level) )
+  invisible( flog.threshold(level) )
 }
 
 
@@ -153,8 +157,8 @@ logger.setLevel <- function(level) {
 # Log at the TRACE level
 logger.trace <- function(msg, ...) {
   stopIfNotInitialized()
-  futile.logger::flog.trace(msg, ..., name='ROOT')
-  futile.logger::flog.trace(msg, ..., name='trace')
+  flog.trace(msg, ..., name='ROOT')
+  flog.trace(msg, ..., name='trace')
 }
 
 #' @name logger.debug
@@ -185,9 +189,9 @@ logger.trace <- function(msg, ...) {
 # Log at the DEBUG level
 logger.debug <- function(msg, ...) {
   stopIfNotInitialized()
-  futile.logger::flog.debug(msg, ..., name='ROOT')
-  futile.logger::flog.debug(msg, ..., name='trace')
-  futile.logger::flog.debug(msg, ..., name='debug')
+  flog.debug(msg, ..., name='ROOT')
+  flog.debug(msg, ..., name='trace')
+  flog.debug(msg, ..., name='debug')
 }
 
 #' @name logger.info
@@ -218,10 +222,10 @@ logger.debug <- function(msg, ...) {
 # Log at the INFO level
 logger.info <- function(msg, ...) {
   stopIfNotInitialized()
-  futile.logger::flog.info(msg, ..., name='ROOT')
-  futile.logger::flog.info(msg, ..., name='trace')
-  futile.logger::flog.info(msg, ..., name='debug')
-  futile.logger::flog.info(msg, ..., name='info')
+  flog.info(msg, ..., name='ROOT')
+  flog.info(msg, ..., name='trace')
+  flog.info(msg, ..., name='debug')
+  flog.info(msg, ..., name='info')
 }
 
 #' @name logger.warn
@@ -252,11 +256,11 @@ logger.info <- function(msg, ...) {
 # Log at the WARN level
 logger.warn <- function(msg, ...) {
   stopIfNotInitialized()
-  futile.logger::flog.warn(msg, ..., name='ROOT')
-  futile.logger::flog.warn(msg, ..., name='trace')
-  futile.logger::flog.warn(msg, ..., name='debug')
-  futile.logger::flog.warn(msg, ..., name='info')
-  futile.logger::flog.warn(msg, ..., name='warn')
+  flog.warn(msg, ..., name='ROOT')
+  flog.warn(msg, ..., name='trace')
+  flog.warn(msg, ..., name='debug')
+  flog.warn(msg, ..., name='info')
+  flog.warn(msg, ..., name='warn')
 }
 
 #' @name logger.error
@@ -287,12 +291,12 @@ logger.warn <- function(msg, ...) {
 # Log at the ERROR level
 logger.error <- function(msg, ...) {
   stopIfNotInitialized()
-  futile.logger::flog.error(msg, ..., name='ROOT')
-  futile.logger::flog.error(msg, ..., name='trace')
-  futile.logger::flog.error(msg, ..., name='debug')
-  futile.logger::flog.error(msg, ..., name='info')
-  futile.logger::flog.error(msg, ..., name='warn')
-  futile.logger::flog.error(msg, ..., name='error')
+  flog.error(msg, ..., name='ROOT')
+  flog.error(msg, ..., name='trace')
+  flog.error(msg, ..., name='debug')
+  flog.error(msg, ..., name='info')
+  flog.error(msg, ..., name='warn')
+  flog.error(msg, ..., name='error')
 }
 
 #' @name logger.fatal
@@ -323,12 +327,12 @@ logger.error <- function(msg, ...) {
 # Log at the fatal level
 logger.fatal <- function(msg, ...) {
   stopIfNotInitialized()
-  futile.logger::flog.fatal(msg, ..., name='ROOT')
-  futile.logger::flog.fatal(msg, ..., name='trace')
-  futile.logger::flog.fatal(msg, ..., name='debug')
-  futile.logger::flog.fatal(msg, ..., name='info')
-  futile.logger::flog.fatal(msg, ..., name='warn')
-  futile.logger::flog.fatal(msg, ..., name='error')
+  flog.fatal(msg, ..., name='ROOT')
+  flog.fatal(msg, ..., name='trace')
+  flog.fatal(msg, ..., name='debug')
+  flog.fatal(msg, ..., name='info')
+  flog.fatal(msg, ..., name='warn')
+  flog.fatal(msg, ..., name='error')
 }
 
 # ----- Utility functions -----------------------------------------------------
@@ -348,7 +352,7 @@ stopIfNotInitialized <- function() {
 
 # ----- Constants -------------------------------------------------------------
 
-# Verbatim values from futile.logger::constants
+# Verbatim values from constants
 #' @docType data
 #' @name logLevels
 #' @aliases FATAL ERROR WARN INFO DEBUG TRACE

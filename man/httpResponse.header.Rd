@@ -13,8 +13,8 @@ httpResponse.header(type = "text")
 A character string containing a valid HTTP Response header.
 }
 \description{
-This function will generate a header string containing only a minimal
-set of possible response header elements including:
+This function will generate a header string containing only a
+minimal set of possible response header elements including:
 \itemize{
 \item{\code{Content-Type}}
 }
